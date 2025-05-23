@@ -293,7 +293,7 @@ const ChatMsg: React.FC<Props> = ({
       dateInfo: {
         ...chatContext.dateInfo,
         dateMode: dateModeValue,
-        unit: currentDateOption || chatContext.dateInfo.unit,
+        unit: currentDateOption || chatContext.dateInfo?.unit,
       },
       dimensions: [
         ...(chatContext.dimensions || []),
@@ -310,7 +310,7 @@ const ChatMsg: React.FC<Props> = ({
       dateInfo: {
         ...chatContext.dateInfo,
         dateMode: dateModeValue,
-        unit: currentDateOption || chatContext.dateInfo.unit,
+        unit: currentDateOption || chatContext.dateInfo?.unit,
       },
       dimensions: drillDownDimension
         ? [...(chatContext.dimensions || []), drillDownDimension]
@@ -351,7 +351,7 @@ const ChatMsg: React.FC<Props> = ({
     entityName !== undefined;
 
   const existDrillDownDimension =
-    queryMode.includes('METRIC') &&
+    (queryMode.includes('METRIC') || queryMode === 'LLM_S2SQL') &&
     getMsgContentType() !== MsgContentTypeEnum.TEXT &&
     !isEntityMode;
 
